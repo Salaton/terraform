@@ -11,7 +11,7 @@
 
 # This block configures the specified provider
 provider "google" {
-  credentials = file("salaton.json")
+  credentials = file("../salaton.json")
 
   project = "intricate-idiom-364006"
   region  = "europe-west1"
