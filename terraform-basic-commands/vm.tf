@@ -4,7 +4,7 @@ resource "google_compute_instance" "default" {
   name                      = "terraform-introduction"
   zone                      = "europe-west1-d"
   machine_type              = "n1-standard-1"
-  tags                      = ["test"]
+  tags                      = ["http-server", "https-server"]
   allow_stopping_for_update = true
 
   boot_disk {
@@ -23,4 +23,16 @@ resource "google_compute_instance" "default" {
       # Without any arguments here, this will give the VM an external IP address
     }
   }
+}
+
+resource "google_compute_firewall" "allow-traffic" {
+  name    = "allow-web-traffic"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "8080", "22", "443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  source_tags   = ["http-server", "https-server"]
 }
