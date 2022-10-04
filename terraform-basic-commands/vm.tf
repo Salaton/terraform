@@ -24,15 +24,3 @@ resource "google_compute_instance" "default" {
     }
   }
 }
-
-resource "google_compute_firewall" "allow-traffic" {
-  name    = "allow-web-traffic"
-  network = "default"
-  allow {
-    protocol = "tcp"
-    ports    = ["80", "8080", "22", "443"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  source_tags   = ["http-server", "https-server"]
-}
