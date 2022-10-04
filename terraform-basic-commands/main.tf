@@ -11,11 +11,11 @@
 
 # This block configures the specified provider
 provider "google" {
-  credentials = file("../salaton.json")
+  credentials = file(var.credentials_file)
 
-  project = "intricate-idiom-364006"
-  region  = "europe-west1"
-  zone    = "europe-west1-d"
+  project = var.project
+  region  = var.region
+  zone    = var.zone
 }
 
 # Resource blocks defines the components of your infrastructure. It might be a component like a server. 
