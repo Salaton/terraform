@@ -23,4 +23,9 @@ resource "google_compute_instance" "default" {
       # Without any arguments here, this will give the VM an external IP address
     }
   }
+
+  # Wait for the API to be enabled
+  depends_on = [
+    google_project_service.enable_gcp_services
+  ]
 }
